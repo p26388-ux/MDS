@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Five Places Worth the Trip — MDS Travels</title>
+<meta name="description" content="Five of the most beautiful places on Earth, and why they're worth crossing the world for.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#10201d;
+    --ink-2:#0b1614;
+    --paper:#f4efe3;
+    --paper-dim:#cfc9ba;
+    --gold:#d8a24a;
+    --rose:#c97c82;
+    --line:#33463f;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Karla',sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    margin:0;
+  }
+  a{color:inherit;}
+  img,svg{display:block;max-width:100%;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:fixed;
+    top:0;left:0;right:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:24px 6vw;
+    z-index:40;
+    mix-blend-mode:difference;
+  }
+  .brand{font-family:'Fraunces',serif;font-size:1.05rem;letter-spacing:.02em;}
+  .brand em{font-style:italic;color:var(--gold);}
+  .topbar nav{display:none;gap:28px;font-size:.85rem;}
+  @media(min-width:820px){.topbar nav{display:flex;}}
+  .topbar nav a{text-decoration:none;opacity:.75;transition:opacity .2s;}
+  .topbar nav a:hover{opacity:1;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:0 6vw;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-eyebrow{
+    color:var(--gold);
+    font-size:.95rem;
+    margin-bottom:18px;
+    opacity:0;
+    animation:rise .8s ease forwards .1s;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem,7vw,5.4rem);
+    line-height:1.02;
+    max-width:14ch;
+    opacity:0;
+    animation:rise .9s ease forwards .25s;
+  }
+  .hero h1 i{color:var(--gold);font-style:italic;}
+  .hero p{
+    max-width:46ch;
+    margin-top:26px;
+    color:var(--paper-dim);
+    font-size:1.05rem;
+    opacity:0;
+    animation:rise .9s ease forwards .45s;
+  }
+  .hero-index{
+    margin-top:56px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 28px;
+    opacity:0;
+    animation:rise .9s ease forwards .6s;
+  }
+  .hero-index a{
+    text-decoration:none;
+    font-size:.85rem;
+    color:var(--paper-dim);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:.2s;
+  }
+  .hero-index a:hover{color:var(--gold);border-color:var(--gold);}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+  .hero-bg{
+    position:absolute;
+    right:-10%;
+    top:50%;
+    transform:translateY(-50%);
+    width:60vw;
+    max-width:640px;
+    opacity:.9;
+  }
+  @media(max-width:900px){.hero-bg{display:none;}}
+
+  /* ---------- destination sections ---------- */
+  .dest{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:40px;
+    padding:90px 6vw;
+    border-top:1px solid var(--line);
+    position:relative;
+  }
+  @media(min-width:900px){
+    .dest{grid-template-columns:1fr 1fr;align-items:center;gap:6vw;padding:130px 6vw;}
+    .dest.reverse .art{order:2;}
+    .dest.reverse .copy{order:1;}
+  }
+  .dest .tag{
+    color:var(--gold);
+    font-size:.85rem;
+    display:block;
+    margin-bottom:14px;
+  }
+  .dest h2{
+    font-size:clamp(2rem,4.2vw,3rem);
+    line-height:1.05;
+    margin-bottom:6px;
+  }
+  .dest .place{
+    color:var(--paper-dim);
+    font-size:1rem;
+    margin-bottom:22px;
+    display:block;
+  }
+  .dest p{
+    max-width:52ch;
+    color:var(--paper-dim);
+  }
+  .dest .meta{
+    display:flex;
+    gap:32px;
+    margin-top:28px;
+    flex-wrap:wrap;
+  }
+  .dest .meta div{font-size:.85rem;}
+  .dest .meta span{
+    display:block;
+    color:var(--gold);
+    font-family:'Fraunces',serif;
+    font-size:1.05rem;
+  }
+  .art{
+    border:1px solid var(--line);
+    background:var(--ink-2);
+    padding:6%;
+    border-radius:2px;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:80px 6vw 50px;
+    border-top:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  footer h3{font-size:1.6rem;max-width:16ch;}
+  footer .foot-row{
+    margin-top:40px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+    color:var(--paper-dim);
+    font-size:.85rem;
+  }
+
+  ::selection{background:var(--gold);color:var(--ink);}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">MDS <em>Travels</em></div>
+  <nav>
+    <a href="#santorini">Santorini</a>
+    <a href="#banff">Banff</a>
+    <a href="#kyoto">Kyoto</a>
+    <a href="#machu-picchu">Machu Picchu</a>
+    <a href="#maldives">Maldives</a>
+  </nav>
+</div>
+
+<section class="hero">
+  <span class="hero-eyebrow">A short list, kept short on purpose</span>
+  <h1>Five places worth <i>crossing the world</i> for</h1>
+  <p>No ranked countdowns, no thousand-item bucket lists — just five landscapes that earn the trip, and the season, view, and reason to go for each.</p>
+  <div class="hero-index">
+    <a href="#santorini">01 Santorini, Greece</a>
+    <a href="#banff">02 Banff, Canada</a>
+    <a href="#kyoto">03 Kyoto, Japan</a>
+    <a href="#machu-picchu">04 Machu Picchu, Peru</a>
+    <a href="#maldives">05 Maldives</a>
+  </div>
+
+  <svg class="hero-bg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="250" cy="250" r="170" fill="none" stroke="#33463f" stroke-width="1"/>
+    <circle cx="250" cy="250" r="120" fill="none" stroke="#33463f" stroke-width="1"/>
+    <circle cx="250" cy="250" r="2" fill="#d8a24a"/>
+    <path d="M250 80 L250 250 L370 320" stroke="#d8a24a" stroke-width="1.4" fill="none"/>
+    <circle cx="370" cy="320" r="4" fill="#c97c82"/>
+    <path d="M120 380 Q250 340 380 400" stroke="#33463f" stroke-width="1"/>
+  </svg>
+</section>
+
+<!-- 01 SANTORINI -->
+<section class="dest" id="santorini">
+  <div class="art">
+    <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="skySantorini" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#c97c82"/>
+          <stop offset="1" stop-color="#10201d"/>
+        </linearGradient>
+      </defs>
+      <rect width="400" height="320" fill="url(#skySantorini)"/>
+      <path d="M0 230 L60 190 L130 225 L200 175 L260 220 L330 185 L400 225 L400 320 L0 320 Z" fill="#0b1614"/>
+      <rect x="70" y="150" width="34" height="30" rx="2" fill="#f4efe3"/>
+      <circle cx="87" cy="150" r="17" fill="#d8a24a"/>
+      <rect x="120" y="170" width="26" height="24" rx="2" fill="#f4efe3"/>
+      <circle cx="133" cy="170" r="13" fill="#d8a24a"/>
+      <rect x="230" y="150" width="30" height="28" rx="2" fill="#f4efe3"/>
+      <circle cx="245" cy="150" r="15" fill="#d8a24a"/>
+      <rect x="270" y="175" width="22" height="20" rx="2" fill="#f4efe3"/>
+      <circle cx="281" cy="175" r="11" fill="#d8a24a"/>
+      <circle cx="330" cy="60" r="26" fill="#d8a24a" opacity=".9"/>
+    </svg>
+  </div>
+  <div class="copy">
+    <span class="tag">01 — The Aegean</span>
+    <h2>Santorini</h2>
+    <span class="place">Cyclades, Greece</span>
+    <p>Whitewashed villages sit along the rim of a volcanic caldera, looking out over water so blue it barely seems real. Oia's sunset is famous for a reason — the whole town turns gold, then rose, then quiet.</p>
+    <div class="meta">
+      <div>Best time<span>Late Sept</span></div>
+      <div>Known for<span>Caldera views</span></div>
+      <div>Do this<span>Walk Fira→Oia</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 BANFF -->
+<section class="dest reverse" id="banff">
+  <div class="art">
+    <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="skyBanff" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#33463f"/>
+          <stop offset="1" stop-color="#10201d"/>
+        </linearGradient>
+      </defs>
+      <rect width="400" height="320" fill="url(#skyBanff)"/>
+      <path d="M0 200 L70 90 L120 160 L180 60 L250 180 L300 110 L400 200 L400 320 L0 320 Z" fill="#0b1614"/>
+      <path d="M120 160 L140 130 L160 160 Z" fill="#f4efe3" opacity=".8"/>
+      <path d="M250 180 L268 145 L286 180 Z" fill="#f4efe3" opacity=".8"/>
+      <path d="M0 240 Q100 210 200 235 T400 225 L400 320 L0 320 Z" fill="#d8a24a" opacity=".18"/>
+      <path d="M0 260 Q120 235 200 255 T400 245 L400 320 L0 320 Z" fill="#d8a24a" opacity=".28"/>
+    </svg>
+  </div>
+  <div class="copy">
+    <span class="tag">02 — The Rockies</span>
+    <h2>Banff National Park</h2>
+    <span class="place">Alberta, Canada</span>
+    <p>Glacier-fed lakes hold a turquoise color that comes from ground-up rock suspended in the water — geology doing the work of a painter. Moraine Lake and Lake Louise are the postcards, but the quieter trails are where the park opens up.</p>
+    <div class="meta">
+      <div>Best time<span>Jun – Sept</span></div>
+      <div>Known for<span>Glacial lakes</span></div>
+      <div>Do this<span>Hike Plain of Six</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 KYOTO -->
+<section class="dest" id="kyoto">
+  <div class="art">
+    <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="skyKyoto" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#d8a24a"/>
+          <stop offset="1" stop-color="#10201d"/>
+        </linearGradient>
+      </defs>
+      <rect width="400" height="320" fill="url(#skyKyoto)"/>
+      <path d="M0 260 L400 260 L400 320 L0 320 Z" fill="#0b1614"/>
+      <!-- torii gate -->
+      <rect x="150" y="120" width="14" height="140" fill="#c97c82"/>
+      <rect x="236" y="120" width="14" height="140" fill="#c97c82"/>
+      <rect x="135" y="105" width="130" height="16" fill="#c97c82"/>
+      <rect x="145" y="130" width="110" height="10" fill="#c97c82"/>
+      <!-- maple leaves -->
+      <circle cx="70" cy="90" r="5" fill="#c97c82"/>
+      <circle cx="90" cy="70" r="4" fill="#d8a24a"/>
+      <circle cx="320" cy="100" r="5" fill="#c97c82"/>
+      <circle cx="340" cy="80" r="4" fill="#d8a24a"/>
+      <circle cx="60" cy="130" r="3" fill="#f4efe3" opacity=".6"/>
+      <circle cx="350" cy="150" r="3" fill="#f4efe3" opacity=".6"/>
+    </svg>
+  </div>
+  <div class="copy">
+    <span class="tag">03 — Old Japan</span>
+    <h2>Kyoto</h2>
+    <span class="place">Kansai, Japan</span>
+    <p>Over a thousand temples and shrines are folded into a modern city, so a quiet stone path can lead straight into centuries of history. Come for the vermillion torii gates of Fushimi Inari, stay for the maple trees in autumn.</p>
+    <div class="meta">
+      <div>Best time<span>Nov</span></div>
+      <div>Known for<span>Temples, gardens</span></div>
+      <div>Do this<span>Fushimi Inari</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 MACHU PICCHU -->
+<section class="dest reverse" id="machu-picchu">
+  <div class="art">
+    <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="skyMachu" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#33463f"/>
+          <stop offset="1" stop-color="#0b1614"/>
+        </linearGradient>
+      </defs>
+      <rect width="400" height="320" fill="url(#skyMachu)"/>
+      <path d="M0 180 L100 70 L180 140 L260 60 L400 190 L400 320 L0 320 Z" fill="#10201d"/>
+      <!-- terraces -->
+      <path d="M40 260 L160 240 L160 320 L40 320 Z" fill="#d8a24a" opacity=".14"/>
+      <path d="M60 275 L160 262 L160 320 L60 320 Z" fill="#d8a24a" opacity=".22"/>
+      <path d="M80 290 L160 282 L160 320 L80 320 Z" fill="#d8a24a" opacity=".3"/>
+      <!-- ruins -->
+      <rect x="190" y="215" width="18" height="18" fill="#f4efe3" opacity=".85"/>
+      <rect x="212" y="222" width="16" height="11" fill="#f4efe3" opacity=".85"/>
+      <rect x="232" y="212" width="20" height="21" fill="#f4efe3" opacity=".85"/>
+      <rect x="256" y="220" width="14" height="13" fill="#f4efe3" opacity=".85"/>
+      <path d="M180 233 L280 233" stroke="#f4efe3" stroke-width="2" opacity=".6"/>
+    </svg>
+  </div>
+  <div class="copy">
+    <span class="tag">04 — The Andes</span>
+    <h2>Machu Picchu</h2>
+    <span class="place">Cusco Region, Peru</span>
+    <p>An Incan citadel built on a mountain ridge, wrapped in cloud forest and terraced fields that still hold their shape 500 years on. Arriving on foot via the Inca Trail changes how the first sight of it lands.</p>
+    <div class="meta">
+      <div>Best time<span>May – Sept</span></div>
+      <div>Known for<span>Incan ruins</span></div>
+      <div>Do this<span>Hike the trail</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 MALDIVES -->
+<section class="dest" id="maldives">
+  <div class="art">
+    <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="skyMaldives" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#d8a24a"/>
+          <stop offset=".5" stop-color="#c97c82"/>
+          <stop offset="1" stop-color="#10201d"/>
+        </linearGradient>
+      </defs>
+      <rect width="400" height="320" fill="url(#skyMaldives)"/>
+      <circle cx="90" cy="70" r="26" fill="#f4efe3" opacity=".9"/>
+      <path d="M0 210 Q200 180 400 210 L400 320 L0 320 Z" fill="#0b1614"/>
+      <!-- bungalows on stilts -->
+      <rect x="120" y="185" width="34" height="18" rx="2" fill="#f4efe3"/>
+      <path d="M116 185 L137 165 L158 185 Z" fill="#c97c82"/>
+      <line x1="126" y1="203" x2="122" y2="230" stroke="#f4efe3" stroke-width="3"/>
+      <line x1="148" y1="203" x2="152" y2="230" stroke="#f4efe3" stroke-width="3"/>
+      <rect x="200" y="195" width="30" height="16" rx="2" fill="#f4efe3"/>
+      <path d="M196 195 L215 178 L234 195 Z" fill="#c97c82"/>
+      <line x1="208" y1="211" x2="205" y2="234" stroke="#f4efe3" stroke-width="3"/>
+      <line x1="222" y1="211" x2="225" y2="234" stroke="#f4efe3" stroke-width="3"/>
+      <path d="M0 240 Q100 225 200 240 T400 235" stroke="#f4efe3" stroke-width="1.5" fill="none" opacity=".5"/>
+    </svg>
+  </div>
+  <div class="copy">
+    <span class="tag">05 — The Indian Ocean</span>
+    <h2>Maldives</h2>
+    <span class="place">South Asia</span>
+    <p>A scatter of low coral islands where the water does most of the talking — a visible gradient from pale shallows to deep blue, often crossed with nothing but a stretch of reef. Overwater villas put the ocean directly under the floorboards.</p>
+    <div class="meta">
+      <div>Best time<span>Nov – Apr</span></div>
+      <div>Known for<span>Reefs, lagoons</span></div>
+      <div>Do this<span>Night snorkel</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h3>Five down. The world has a few more.</h3>
+  <p style="max-width:52ch;color:var(--paper-dim);">This page is a starting point — swap in your own photos, add a sixth place, or turn each section into a full write-up as the site grows.</p>
+  <div class="foot-row">
+    <span>Built by MDS</span>
+    <span id="year"></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
